@@ -1,10 +1,8 @@
 # COVID-19 Case Tracker
 
-A new Flutter project.
+An app to track corona case number and shows more info about Corona Virus
 
 ## Getting Started
-
-This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
 
