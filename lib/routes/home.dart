@@ -1,7 +1,9 @@
 import 'package:covid/api/api.dart';
+import 'package:covid/widget/countup.dart';
 import 'package:flutter/material.dart';
 import 'package:covid/widget/text.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Home extends StatefulWidget {
@@ -338,7 +340,16 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                     Center(
                                       child: Column(
                                         children: [
-                                          TextMain(active.toString(), 30),
+                                          Countup(
+                                            begin: 0,
+                                            end: active.toDouble(),
+                                            duration: Duration(seconds: 2),
+                                            separator: ',',
+                                            style: GoogleFonts.poppins(
+                                              fontSize: 30,
+                                              fontWeight: FontWeight.w700,
+                                            ),
+                                          ),
                                         ],
                                       ),
                                     ),
@@ -390,7 +401,16 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                     Center(
                                       child: Column(
                                         children: [
-                                          TextMain(recovered.toString(), 30),
+                                          Countup(
+                                            begin: 0,
+                                            end: recovered.toDouble(),
+                                            duration: Duration(seconds: 2),
+                                            separator: ',',
+                                            style: GoogleFonts.poppins(
+                                              fontSize: 30,
+                                              fontWeight: FontWeight.w700,
+                                            ),
+                                          ),
                                         ],
                                       ),
                                     ),
@@ -442,7 +462,16 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                     Center(
                                       child: Column(
                                         children: [
-                                          TextMain(deaths.toString(), 30),
+                                          Countup(
+                                            begin: 0,
+                                            end: deaths.toDouble(),
+                                            duration: Duration(seconds: 2),
+                                            separator: ',',
+                                            style: GoogleFonts.poppins(
+                                              fontSize: 30,
+                                              fontWeight: FontWeight.w700,
+                                            ),
+                                          ),
                                         ],
                                       ),
                                     ),
