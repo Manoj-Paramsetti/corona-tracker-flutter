@@ -44,7 +44,8 @@ class _SafetyState extends State<Safety> {
                     child: Column(children: [
                   Image(
                     width: width,
-                    fit: BoxFit.fitWidth,
+                    height: height * 0.40,
+                    fit: BoxFit.contain,
                     image: NetworkImage(
                         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-RaNVe7YVjIlyPh_aEul2Goqvqw5s2ncS9g&usqp=CAU"),
                   ),

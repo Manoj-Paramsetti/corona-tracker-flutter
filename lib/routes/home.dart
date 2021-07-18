@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:covid/widget/text.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Home extends StatefulWidget {
@@ -225,6 +226,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         active = confirmed - (recovered + deaths);
       });
     });
+    GetVaccine(600094).getVaccine();
   }
 
   @override
@@ -266,43 +268,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             Container(
               padding: EdgeInsets.only(top: 5, left: 10, right: 10, bottom: 5),
             ),
-            Center(
-              child: Image(
-                width: 250,
-                height: 250,
-                fit: BoxFit.fitWidth,
-                image: NetworkImage(
-                    "https://images.vexels.com/media/users/3/193251/isolated/preview/b23a8130b03eff475be26b2275ebfc19-covid-19-man-character-icon-by-vexels.png"),
-              ),
-            ),
-            DropdownButton(
-                value: dropdownValue,
-                hint: Text('Select country'),
-                onChanged: (String? newvalue) {
-                  setState(() {
-                    dropdownValue = newvalue!;
-                    var response = GetCases(newvalue).getCases().then((res) {
-                      setState(() {
-                        var confirmed = res['confirmed']['value'];
-                        recovered = res['recovered']['value'];
-                        deaths = res['deaths']['value'];
-                        active = confirmed - (recovered + deaths);
-                      });
-                    });
-                    print("Response:" + response.toString());
-                  });
-                },
-                items: countries.map((String value) {
-                  return DropdownMenuItem(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList()),
             SizedBox(
-              height: 20,
-            ),
-            SizedBox(
-              height: height - 416,
+              height: height - 60,
               width: width,
               child: LayoutBuilder(builder:
                   (BuildContext context, BoxConstraints viewportConstraints) {
@@ -311,6 +278,40 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     //color: Colors.blue,
                     child: Column(
                       children: [
+                        Center(
+                          child: Image(
+                            width: 250,
+                            height: 250,
+                            fit: BoxFit.fitWidth,
+                            image: AssetImage("man_with_mask_logo.png"),
+                          ),
+                        ),
+                        DropdownButton(
+                            value: dropdownValue,
+                            hint: Text('Select country'),
+                            onChanged: (String? newvalue) {
+                              setState(() {
+                                dropdownValue = newvalue!;
+                                var response =
+                                    GetCases(newvalue).getCases().then((res) {
+                                  setState(() {
+                                    var confirmed = res['confirmed']['value'];
+                                    recovered = res['recovered']['value'];
+                                    deaths = res['deaths']['value'];
+                                    active = confirmed - (recovered + deaths);
+                                  });
+                                });
+                              });
+                            },
+                            items: countries.map((String value) {
+                              return DropdownMenuItem(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList()),
+                        SizedBox(
+                          height: 20,
+                        ),
                         Container(
                           padding: EdgeInsets.all(10),
                           child: Column(children: [
@@ -545,12 +546,24 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     Navigator.popAndPushNamed(context, '/treatment');
                   },
                 ),
+                ListTile(
+                  title: TextMainNormal('About Vaccine', 14),
+                  onTap: () {
+                    Navigator.popAndPushNamed(context, '/safety');
+                  },
+                ),
+                ListTile(
+                  title: TextMainNormal('Find Vaccine', 14),
+                  onTap: () {
+                    Navigator.popAndPushNamed(context, '/getvaccine');
+                  },
+                ),
                 SizedBox(
                   height: 40,
                 ),
                 Center(child: TextMainNormal("Other", 12)),
                 ListTile(
-                  title: TextMainNormal('About us', 14),
+                  title: TextMainNormal('About this app', 14),
                   onTap: () {
                     showDialog(
                         context: context,

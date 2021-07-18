@@ -18,10 +18,52 @@ class GetCases {
       print("place" + urlCountry);
       var url = Uri.parse(urlCountry);
       var response = await http.get(url);
-      print('Response status: ${response.statusCode}');
-      print('Response body: ${response.body}');
       res = jsonDecode(response.body);
     }
+    return res;
+  }
+}
+
+class GetVaccine {
+  int disCode;
+  GetVaccine(this.disCode);
+  Map<String, dynamic> res = {};
+  Future<Map> getVaccine() async {
+    var url = Uri.parse(
+        'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=555&date=12-09-2020');
+    var response = await http.get(url);
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+    res = jsonDecode(response.body);
+    return res;
+  }
+}
+
+class GetDistrict {
+  int stateCode;
+  GetDistrict(this.stateCode);
+  Map<String, dynamic> res = {};
+  Future<Map> getVaccine() async {
+    var url = Uri.parse(
+        'https://cdn-api.co-vin.in/api/v2/admin/location/districts/' +
+            stateCode.toString());
+    var response = await http.get(url);
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+    res = jsonDecode(response.body);
+    return res;
+  }
+}
+
+class GetStates {
+  Map<String, dynamic> res = {};
+  Future<Map> getVaccine() async {
+    var url =
+        Uri.parse('https://cdn-api.co-vin.in/api/v2/admin/location/states');
+    var response = await http.get(url);
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+    res = jsonDecode(response.body);
     return res;
   }
 }

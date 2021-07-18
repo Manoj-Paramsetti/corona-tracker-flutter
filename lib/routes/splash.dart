@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:covid/widget/text.dart';
 import 'package:flutter/material.dart';
 
@@ -34,7 +32,7 @@ class _SplashState extends State<Splash> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image(
-                  width: width * 0.44,
+                  width: 150.0,
                   fit: BoxFit.fitWidth,
                   image: AssetImage("assets/logo.png"),
                 ),
