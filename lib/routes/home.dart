@@ -547,7 +547,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 ListTile(
                   title: TextMainNormal('About Vaccine', 14),
                   onTap: () {
-                    Navigator.popAndPushNamed(context, '/safety');
+                    Navigator.popAndPushNamed(context, '/vaccine');
                   },
                 ),
                 ListTile(

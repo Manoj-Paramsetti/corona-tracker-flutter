@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:covid/routes/home.dart';
 import 'package:covid/routes/symptoms.dart';
 import 'package:covid/routes/getvaccine.dart';
+import 'package:covid/routes/aboutVaccination.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
         '/symptoms': (context) => Symptoms(),
         '/safety': (context) => Safety(),
         '/treatment': (context) => Treatment(),
+        '/vaccine': (context) => AboutVaccination(),
         '/getvaccine': (context) => GetVaccineRoute()
       },
     );
