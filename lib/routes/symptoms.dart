@@ -37,7 +37,7 @@ class _SymptomsState extends State<Symptoms> {
               ],
             ),
             SizedBox(
-              height: height - 40,
+              height: height - 72,
               child: LayoutBuilder(
                 builder:
                     (BuildContext context, BoxConstraints viewportConstraints) {

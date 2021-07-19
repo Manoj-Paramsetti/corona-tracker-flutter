@@ -226,7 +226,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         active = confirmed - (recovered + deaths);
       });
     });
-    GetVaccine(600094).getVaccine();
   }
 
   @override
@@ -269,7 +268,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               padding: EdgeInsets.only(top: 5, left: 10, right: 10, bottom: 5),
             ),
             SizedBox(
-              height: height - 60,
+              height: height - 93,
               width: width,
               child: LayoutBuilder(builder:
                   (BuildContext context, BoxConstraints viewportConstraints) {
@@ -282,8 +281,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                           child: Image(
                             width: 250,
                             height: 250,
-                            fit: BoxFit.fitWidth,
-                            image: AssetImage("man_with_mask_logo.png"),
+                            image: AssetImage("assets/man_with_mask_logo.png"),
                           ),
                         ),
                         DropdownButton(

@@ -32,7 +32,7 @@ class _SplashState extends State<Splash> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image(
-                  width: 150.0,
+                  width: 120.0,
                   fit: BoxFit.fitWidth,
                   image: AssetImage("assets/logo.png"),
                 ),

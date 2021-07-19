@@ -24,13 +24,22 @@ class GetCases {
   }
 }
 
-class GetVaccine {
-  int disCode;
-  GetVaccine(this.disCode);
+class GetCenter {
+  String disCode;
+  String date;
+  GetCenter(this.disCode, this.date);
   Map<String, dynamic> res = {};
   Future<Map> getVaccine() async {
     var url = Uri.parse(
-        'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=555&date=12-09-2020');
+        'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=' +
+            this.disCode.toString() +
+            '&date=' +
+            this.date);
+    print(
+        'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=' +
+            this.disCode.toString() +
+            '&date=' +
+            this.date);
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
@@ -40,13 +49,13 @@ class GetVaccine {
 }
 
 class GetDistrict {
-  int stateCode;
+  String stateCode;
   GetDistrict(this.stateCode);
   Map<String, dynamic> res = {};
   Future<Map> getVaccine() async {
     var url = Uri.parse(
         'https://cdn-api.co-vin.in/api/v2/admin/location/districts/' +
-            stateCode.toString());
+            stateCode);
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
