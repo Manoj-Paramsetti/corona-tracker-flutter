@@ -72,10 +72,13 @@ class _GetVaccineRouteState extends State<GetVaccineRoute> {
     GetDistrict(stateId!).getVaccine().then((result) {
       setState(() {
         district = result;
+
+        districtId = result["districts"][0]["district_id"].toString();
       });
     });
   }
 
+  String date = DateFormat('dd-MM-yyyy').format(DateTime.now()).toString();
   var centers = [];
   bool card = false;
   @override
@@ -172,15 +175,10 @@ class _GetVaccineRouteState extends State<GetVaccineRoute> {
                                 },
                                 decoration: InputDecoration(
                                     labelText: "Select the date"),
-                                onChanged: (date) {
-                                  card = false;
-                                  GetCenter(districtId, _format.format(date!))
-                                      .getVaccine()
-                                      .then((res) {
-                                    setState(() {
-                                      centers = res["sessions"];
-                                    });
-                                    print(res);
+                                onChanged: (_date) {
+                                  setState(() {
+                                    card = false;
+                                    date = _format.format(_date!);
                                   });
                                 },
                               ),
@@ -189,8 +187,13 @@ class _GetVaccineRouteState extends State<GetVaccineRoute> {
                               ),
                               ElevatedButton(
                                 onPressed: () {
-                                  setState(() {
-                                    card = true;
+                                  GetCenter(districtId, date)
+                                      .getVaccine()
+                                      .then((res) {
+                                    setState(() {
+                                      centers = res["sessions"];
+                                      card = true;
+                                    });
                                   });
                                 },
                                 style: ButtonStyle(
@@ -305,6 +308,52 @@ class _GetVaccineRouteState extends State<GetVaccineRoute> {
                                                       TextSpan(
                                                           text: centers[index]
                                                               ["fee"]),
+                                                      TextSpan(
+                                                        text: "\nVaccnine: ",
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                      TextSpan(
+                                                          text: centers[index]
+                                                                  ["vaccine"]
+                                                              .toString()),
+                                                      TextSpan(
+                                                        text: "\nMin age: ",
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                      TextSpan(
+                                                          text: centers[index][
+                                                                  "min_age_limit"]
+                                                              .toString()),
+                                                      TextSpan(
+                                                        text:
+                                                            "\nAvailable capacity dose 1: ",
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                      TextSpan(
+                                                          text: centers[index][
+                                                                  "available_capacity_dose1"]
+                                                              .toString()),
+                                                      TextSpan(
+                                                        text:
+                                                            "\nAvailable capacity dose 2: ",
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                      TextSpan(
+                                                          text: centers[index][
+                                                                  "available_capacity_dose2"]
+                                                              .toString()),
                                                     ])),
                                               ],
                                             ),
